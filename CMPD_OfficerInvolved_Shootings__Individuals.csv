@@ -1,0 +1,71 @@
+﻿INCIDENT_ID,INDIVIDUAL_RACE,INDIVIDUAL_GENDER,INDIVIDUAL_AGE,INDIVIDUAL_INJURY_TYPE,ObjectID,CreationDate,Creator,EditDate,Editor
+7307,Black,Male,36,Non-Fatal Injury,1,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+7699,Black,Male,35,Non-Fatal Injury,2,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+9687,Hispanic,Male,17,Miss,3,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10386,Black,Male,21,Non-Fatal Injury,4,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10392,Black,Male,25,Non-Fatal Injury,5,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10484,White,Male,24,Miss,6,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10789,Black,Male,15,Non-Fatal Injury,7,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10973,White,Male,48,Fatal Injury,8,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+10974,Black,Male,69,Non-Fatal Injury,9,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+11493,Black,Male,21,Non-Fatal Injury,10,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+12277,Hispanic,Male,22,Non-Fatal Injury,11,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+13080,White,Male,48,Non-Fatal Injury,12,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+13634,Black,Male,28,Fatal Injury,13,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+14477,White,Male,55,Fatal Injury,14,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15255,Black,Male,17,Miss,15,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15255,Black,Male,17,Fatal Injury,16,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17590,Black,Male,,Miss,17,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17817,Black,Male,,Non-Fatal Injury,18,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+18163,Black,Female,20,Fatal Injury,19,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15735,Black,Male,27,Miss,20,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15735,Black,Male,24,Miss,21,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15735,Black,Male,25,Miss,22,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15821,Black,Male,24,Fatal Injury,23,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+16193,Black,Male,31,Non-Fatal Injury,24,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17016,Black,Male,21,Miss,25,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17018,Black,Male,21,Fatal Injury,26,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+19333,Black,Male,32,Miss,27,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+19693,Black,Male,18,Fatal Injury,28,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+19722,Black,Male,33,Fatal Injury,29,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20336,Black,Male,25,Non-Fatal Injury,30,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+5954,Black,Male,16,Fatal Injury,31,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+6530,Black,Male,52,Non-Fatal Injury,32,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+11088,Hispanic,Male,57,Miss,33,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+12646,Black,Male,28,Miss,34,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+13575,White,Male,21,Non-Fatal Injury,35,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+13894,White,Male,26,Fatal Injury,36,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+15332,White,Male,59,Fatal Injury,37,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+16556,Black,Male,26,Miss,38,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17466,Black,Male,31,Non-Fatal Injury,39,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+17939,Black,Male,27,Non-Fatal Injury,40,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+18223,Black,Male,14,Non-Fatal Injury,41,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+19720,Black,Male,30,Fatal Injury,42,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+19808,Unknown,Male,,Miss,43,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20244,Asian or Pacific islander,Male,,Fatal Injury,44,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20421,Black,Male,18,Fatal Injury,45,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20675,Hispanic,Male,,Non-Fatal Injury,46,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20825,Black,Male,43,Fatal Injury,47,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20736,White,Male,30,Non-Fatal Injury,48,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20497,Black,Male,40,Non-Fatal Injury,49,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20897,Hispanic,Male,,Non-Fatal Injury,50,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+20904,Black,Male,,Non-Fatal Injury,51,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+1649,Black,Male,33,Miss,52,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+1739,White,Male,25,Non-Fatal Injury,53,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+1875,Black,Male,19,Miss,54,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+1953,White,Male,67,Fatal Injury,55,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+2421,Black,Male,25,Miss,56,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+2596,Black,Male,25,Miss,57,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+3095,Black,Male,27,Miss,58,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+3490,Black,Male,33,Non-Fatal Injury,59,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+3750,Black,Male,36,Fatal Injury,60,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+3908,White,Male,41,Fatal Injury,61,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+3932,Black,Male,26,Non-Fatal Injury,62,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+4392,Black,Male,42,Fatal Injury,63,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+4925,Black,Male,17,Non-Fatal Injury,64,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+5822,Black,Male,33,Non-Fatal Injury,65,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+6508,Hispanic,Male,37,Non-Fatal Injury,66,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+6740,White,Male,29,Non-Fatal Injury,67,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+6788,Black,Male,29,Non-Fatal Injury,68,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+6867,Black,Male,21,Fatal Injury,69,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata
+7218,Hispanic,Male,27,Non-Fatal Injury,70,2016-12-20T23:51:54.392Z,charlottedata,2016-12-20T23:51:54.392Z,charlottedata

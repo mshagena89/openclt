@@ -1,0 +1,76 @@
+---
+title: "Open Charlotte - CMPD Officer Involved Shooting Data"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(leaflet)
+library(readr)
+
+shooting_data <- read_csv('C:/open_clt/shootings/cleaned_data.csv')
+
+
+#let's add a popup_html field - 
+#HTML that will display when user clicks on an incident
+
+shooting_data$popup_html <- paste0("<style> div.leaflet-popup-content {width:500px !important;}</style>",
+                                   "<b>Date: </b> ", shooting_data$YEAR_MONTH, "<br/>",
+                                   "<b>Location: </b>", shooting_data$LOCATION, "<br/>",
+                                   "<b>DA Legal Review: </b>", shooting_data$DA_LEGAL_REVIEW, "<br/>",
+                                   "<b>Fatal Injury? </b>", shooting_data$Fatal_Injury, "<br/>",
+                                   "<b>Non Fatal Injury? </b>", shooting_data$Non_Fatal_Injury, "<br/>",
+                                   "<b>Shots fired & Missed? </b>", shooting_data$Miss, "<br/> <br/>",
+                                   "<b>Narrative: </b>", shooting_data$NARRATIVE)
+
+map <- leaflet(data = shooting_data) %>%  
+  addTiles() %>% 
+  setView(lng = -80.8431, lat = 35.2271, zoom = 10) %>%
+  addMarkers(~long, ~lat, popup = ~as.character(popup_html))
+
+
+```
+
+
+Inputs {.sidebar}
+-------------------------------------
+
+###Filters
+
+####Officer Demographics
+```{r}
+
+```
+
+####Individual Demographics
+```{r}
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### CMPD Shooting Incidents
+
+```{r}
+map
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Officer Demographics
+
+```{r}
+
+```
+
+### Individual Demographics
+
+```{r}
+
+```
+

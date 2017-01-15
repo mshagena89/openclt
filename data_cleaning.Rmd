@@ -1,0 +1,279 @@
+---
+title: "CLT Police Misconduct"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+```{r setup echo false}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(ggmap)
+library(leaflet)
+library(tidyr)
+
+incidents <- read_csv('C:/open_clt/shootings/CMPD_OfficerInvolved_Shootings__Incidents.csv')
+colnames(incidents)[1] <- "INCIDENT_ID"
+
+individuals <- read_csv('C:/open_clt/shootings/CMPD_OfficerInvolved_Shootings__Individuals.csv')
+colnames(individuals)[1] <- "INCIDENT_ID"
+
+
+officers <- read_csv('C:/open_clt/shootings/CMPD_OfficerInvolved_Shootings__Officers.csv')
+colnames(officers)[1] <- "INCIDENT_ID"
+```
+
+
+
+###Geocode Incidents and Write to CSV 
+```{r echo false}
+#geocode incidents for lat long
+
+geocode_incident <- function(df)
+{
+  #create columns for lat/long
+  df$lat <- as.numeric(0)
+  df$long <- as.numeric(0)
+  
+  #loop through dataframe and geocode each location
+  for(i in 1:nrow(df))
+  {
+    loc <- df[i,]$LOCATION
+    lat_lon <- geocode(loc, output = "latlon", source = "google")
+    df[i,]$lat <- lat_lon$lat
+    df[i,]$long <- lat_lon$lon
+  }
+  
+  return(df)
+}
+
+incidents_geocoded <- geocode_incident(incidents)
+
+write_csv(incidents_geocoded, 'C:/open_clt/shootings/geocoded_incidents.csv')
+```
+
+
+
+####Add officer data to incident dataframe
+```{r}
+incidents_geocoded <- read_csv('C:/open_clt/shootings/geocoded_incidents.csv')
+
+#Get only the data we need
+#------
+
+incidents <- incidents_geocoded %>% 
+  select(INCIDENT_ID, 
+         YEAR_MONTH,
+         LOCATION,
+         DA_LEGAL_REVIEW,
+         NARRATIVE,
+         lat,
+         long)
+
+officers <- officers %>% 
+  select(INCIDENT_ID,
+         OFFICER_RACE,
+         OFFICER_GENDER,
+         OFFICER_EXPERIENCE_YEARS,
+         OFFICER_POLICY_VIOLATION)
+
+
+#number of officers per event
+#-------
+summary_num_officers <- officers %>% 
+  group_by(INCIDENT_ID) %>% 
+  summarise(num_officers = n()
+  )
+            
+
+#count by race per incident
+#---------
+summary_race <-  officers %>% 
+  group_by(INCIDENT_ID, OFFICER_RACE) %>% 
+  summarise(num_race = n()) %>% 
+  spread(., OFFICER_RACE, num_race)
+
+#count of gender per incident
+#--------
+summary_gender <- officers %>% 
+  group_by(INCIDENT_ID, OFFICER_GENDER) %>% 
+  summarise(num_gender = n()) %>% 
+  spread(., OFFICER_GENDER, num_gender)
+
+
+#experience distribution
+#--------
+summary_experience <- officers %>% 
+  group_by(INCIDENT_ID) %>% 
+  
+  mutate(avg_experience = mean(OFFICER_EXPERIENCE_YEARS),
+         min_experience = min(OFFICER_EXPERIENCE_YEARS),
+         max_experience = max(OFFICER_EXPERIENCE_YEARS)) %>% 
+  
+  select(INCIDENT_ID,
+         avg_experience,
+         min_experience, 
+         max_experience) %>% 
+  
+  unique(.)
+
+
+#policy violation
+#--------
+summary_policy_violation <- officers %>% distinct(., INCIDENT_ID, OFFICER_POLICY_VIOLATION)
+ 
+
+#join all this new summary data data to original incidents dataframe
+#------
+
+incidents_officers <- incidents %>% 
+  inner_join(., summary_gender) %>%
+  inner_join(., summary_experience) %>% 
+  inner_join(., summary_num_officers) %>% 
+  inner_join(., summary_policy_violation) %>% 
+  inner_join(., summary_race)
+
+
+#replace all NA's with 0
+#--------
+incidents_officers_clean <- incidents_officers
+incidents_officers_clean[is.na(incidents_officers_clean <- incidents_officers)] <- 0
+
+
+```
+
+####Add individual data to incidents / officer dataset
+```{r}
+
+#just keep the columns we need
+#---------
+individuals <- individuals %>% 
+  select(INCIDENT_ID, 
+         INDIVIDUAL_RACE, 
+         INDIVIDUAL_GENDER, 
+         INDIVIDUAL_AGE, 
+         INDIVIDUAL_INJURY_TYPE
+         )
+
+#2 incidents where we have more than one individual involved
+#---------
+summary_num_individuals <- individuals %>% 
+  group_by(INCIDENT_ID) %>% 
+  summarise(num_individuals = n()) 
+
+#summary of individual race
+#---------
+summary_race_individuals <-  individuals %>% 
+  group_by(INCIDENT_ID, INDIVIDUAL_RACE) %>% 
+  summarise(num_race = n()) %>% 
+  spread(., INDIVIDUAL_RACE, num_race)
+
+#summary of individual gender
+#--------
+summary_gender_individuals <-  individuals %>% 
+  group_by(INCIDENT_ID, INDIVIDUAL_GENDER) %>% 
+  summarise(num_gender = n()) %>% 
+  spread(., INDIVIDUAL_GENDER, num_gender)
+
+#summary of individual age
+summary_individual_age <- individuals %>% 
+  group_by(INCIDENT_ID) %>% 
+  
+  mutate(avg_individual_age = mean(INDIVIDUAL_AGE),
+         min_individual_age = min(INDIVIDUAL_AGE),
+         max_individual_age = max(INDIVIDUAL_AGE)) %>% 
+  
+  select(INCIDENT_ID,
+         avg_individual_age,
+         min_individual_age, 
+         max_individual_age) %>% 
+  
+  unique(.)
+
+#summary of individual injury type
+summary_individual_injury_type <-  individuals %>% 
+  group_by(INCIDENT_ID, INDIVIDUAL_INJURY_TYPE) %>% 
+  summarise(num_injuries = n()) %>% 
+  spread(., INDIVIDUAL_INJURY_TYPE, num_injuries)
+
+
+#join all individual summary data together, fill NA's with 0, join to incident and officer data DF
+#--------
+
+incidents_all_data <- incidents_officers_clean %>% 
+  inner_join(., summary_num_individuals, by = "INCIDENT_ID") %>%
+  inner_join(., summary_race_individuals, by = "INCIDENT_ID") %>% 
+  inner_join(., summary_gender_individuals, by = "INCIDENT_ID") %>% 
+  inner_join(., summary_individual_age, by = "INCIDENT_ID" ) %>% 
+  inner_join(., summary_individual_injury_type, by = "INCIDENT_ID"  )
+
+
+#replace all NA's with 0
+incidents_all_data_clean <- incidents_all_data
+incidents_all_data_clean[is.na(incidents_all_data_clean <- incidents_all_data)] <- 0
+
+
+#Let's rename columns for clarity
+incidents_all_data_clean <- incidents_all_data_clean %>% 
+  rename(., Number_Female_Police = Female.x) %>% 
+  rename(., Number_Male_Police = Male.x) %>% 
+  rename(., Average_Experience_Police = avg_experience) %>% 
+  rename(., Min_Experience_Police = min_experience) %>% 
+  rename(., Max_Experience_Police = max_experience) %>% 
+  rename(., Total_Officers_Dispatched = num_officers) %>% 
+  rename(., Policy_Violation = OFFICER_POLICY_VIOLATION) %>% 
+  rename(., American_Indian_Officer = `American Indian/Alaskan Native`) %>% 
+  rename(., Asian_Officer = `Asian or Pacific islander.x`) %>% 
+  rename(., Black_Officer = Black.x) %>% 
+  rename(., Hispanic_Officer = Hispanic.x) %>% 
+  rename(., White_Officer = White.x) %>% 
+  rename(., Total_Individuals = num_individuals) %>% 
+  rename(., Asian_Individual = `Asian or Pacific islander.y`) %>% 
+  rename(., Black_Individual = Black.y) %>% 
+  rename(., Hispanic_Individual = Hispanic.y) %>% 
+  rename(., Unknown_Race_Individual = Unknown) %>% 
+  rename(., White_Individual = White.y) %>% 
+  rename(., Female_Individual = Female.y) %>% 
+  rename(., Male_Individual = Male.y) %>% 
+  rename(., Average_Age_Individual = avg_individual_age) %>% 
+  rename(., Min_Age_Individual = min_individual_age) %>% 
+  rename(., Max_Age_Individual = max_individual_age) %>% 
+  rename(., Fatal_Injury = `Fatal Injury`) %>% 
+  rename(., Non_Fatal_Injury = `Non-Fatal Injury`)
+  
+
+write_csv(incidents_all_data_clean, 'C:/open_clt/shootings/cleaned_data.csv')
+```
+
+```
+
+
+####Plot Incidents with ggmap
+```{r echo false}
+
+my_loc <- c(lon = -80.8431, lat = 35.2271)
+
+map <- get_map(location=my_loc, 
+               source = "google", 
+               maptype = "roadmap", 
+               zoom = 10 ) 
+
+ggmap(map) + geom_point(aes(x = long, y = lat), data = incidents_geocoded, color = "darkred" )
+
+
+```
+
+####Plot incidents with leaflet
+```{r}
+
+m <- leaflet(data = incidents_geocoded) %>%  
+  addTiles() %>% 
+  setView(lng = -80.8431, lat = 35.2271, zoom = 12) %>%
+  addMarkers(~long, ~lat, popup = ~as.character(NARRATIVE))
+
+
+m
+
+```
+
