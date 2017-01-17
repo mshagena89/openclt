@@ -1,11 +1,15 @@
 ---
-title: "Open Charlotte - CMPD Officer Involved Shooting Data"
+title: "CMPD Officer Involved Shooting Incidents"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
     runtime: shiny
 ---
+
+
+Map View
+=====================================
 
 ```{r setup, include=FALSE}
 library(leaflet)
@@ -40,21 +44,55 @@ Inputs {.sidebar}
 
 ###Filters
 
-####Officer Demographics
 ```{r}
 
+
+  checkboxGroupInput("policy_violation", "Officer Policy Violation",
+                     c("Yes" = "yes_violation",
+                       "No" = "no_violation"),
+                     selected = c("yes_violation", "no_violation"))
+
+
+  checkboxGroupInput("officer_demographics", "Officer Demographics",
+                     c("White" = "white_officer",
+                       "Black" = "black_officer",
+                       "Asian" = "asian_officer",
+                       "Hispanic" = "hispanic_officer",
+                       "American Indian" = "indian_officer",
+                       "Male" = "male_officer",
+                       "Female" = "female_officer"),
+                     
+                     selected = c("white_officer", "black_officer", "asian_officer", "hispanic_officer",
+                                  "indian_officer", "male_officer", "female_officer"))
+
+  checkboxGroupInput("individual_demographics", "Individual Demographics",
+                     c("White" = "white_individual",
+                       "Black" = "black_individual",
+                       "Asian" = "asian_individual",
+                       "Hispanic" = "hispanic_individual",
+                       "Unknown" = "unknown_individual",
+                       "Male" = "male_individual",
+                       "Female" = "female_individual"),
+                     
+                     selected = c("white_individual", "black_individual", "asian_individual",
+                                  "hispanic_individual", "unknown_individual", "male_individual",
+                                  "female_individual") )
+
+  
+    checkboxGroupInput("injury_type", "Injuries Suffered",
+                     c("Fatal Injury" = "fatal_injury",
+                       "Non Fatal Injury" = "non_fatal_injury",
+                       "None (Shots Missed)" = "no_injury"),
+                     
+                     selected = c("fatal_injury", "non_fatal_injury", "no_injury"))
+  
 ```
 
-####Individual Demographics
-```{r}
-
-```
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### CMPD Shooting Incidents
-
+### Charlotte Officer Involved Shootings: 2005 - 2016
 ```{r}
 map
 ```
@@ -74,3 +112,6 @@ Column {data-width=350}
 
 ```
 
+
+Raw Data View
+=====================================
