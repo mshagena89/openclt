@@ -14,6 +14,8 @@ Map View
 ```{r setup, include=FALSE}
 library(leaflet)
 library(readr)
+library(DT)
+library(plotly)
 
 shooting_data <- read_csv('C:/open_clt/shootings/cleaned_data.csv')
 
@@ -100,18 +102,39 @@ map
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Officer Demographics
+### Incidents Per Year
 
 ```{r}
+plt_data <- shooting_data %>% 
+  mutate(Year = substr(YEAR_MONTH, 1, 4)) %>% 
+  group_by(Year) %>% 
+  summarise(Incidents = n())
+
+
+plt <- ggplot(data = plt_data, aes(x = Year, y = Incidents)) + geom_bar(stat = "identity", fill = "blue") + ggtitle("Officer Involved Shooting Incidents By Year") + scale_y_continuous(breaks = c(seq(0,12, 1)))
+
+ggplotly(plt) 
+  
 
 ```
 
-### Individual Demographics
+### Placeholder
 
 ```{r}
-
+#TODO: add code to display narrative here
 ```
 
 
 Raw Data View
 =====================================
+
+### Raw Data
+```{r}
+dt <- shooting_data %>% 
+  select(-(popup_html), -(lat), -(long))
+
+datatable(dt, options = list(
+  autoWidth = TRUE,
+  columnDefs = list(list(width = '400px', targets = c(5))) )) 
+```
+
