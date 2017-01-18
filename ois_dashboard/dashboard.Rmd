@@ -17,7 +17,7 @@ library(readr)
 library(DT)
 library(plotly)
 
-shooting_data <- read_csv('C:/open_clt/shootings/cleaned_data.csv')
+shooting_data <- read_csv('cleaned_data.csv')
 
 
 #let's add a popup_html field - 
